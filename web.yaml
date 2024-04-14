@@ -13,21 +13,31 @@
       state: started
       enabled: yes
 
-  - name: remove default nginx html 
-    ansible.builtin.command: rm *
-    args:
-      chdir: /usr/share/nginx/html
-    
+  - name: remove html directory
+    ansible.builtin.file:
+      path: /usr/share/nginx/html
+      state: absent
+
+  - name: create html directory
+    ansible.builtin.file:
+      path: /usr/share/nginx/html
+      state: directory
+
   - name: Download application code 
     ansible.builtin.get_url: 
       url: https://roboshop-builds.s3.amazonaws.com/web.zip
-      dest: /tmp/web.zip
+      dest: /tmp
 
   - name: unzip the application code
     ansible.builtin.unarchive:
       src: /tmp/web.zip
       dest: /usr/share/nginx/html
       remote_src: yes
+
+  - name: copy roboshop configuration
+    ansible.builtin.copy:
+      src: roboshop.conf
+      dest: /etc/nginx/default.d/roboshop.conf
 
   - name: restart service nginx, in all cases
     ansible.builtin.service:
