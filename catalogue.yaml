@@ -3,7 +3,7 @@
   become: yes
   tasks:
   - name: disable the default version and enable new 1.18 version nodejs
-    ansible.builtin.command: dnf module disable nodejs -y; dnf module enable nodejs:18 -y
+    ansible.builtin.shell: dnf module disable nodejs -y; dnf module enable nodejs:18 -y
     register: enable_status
   
   - name: enable module status
