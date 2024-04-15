@@ -1,0 +1,27 @@
+- name: install redis
+  hosts: redis
+  become: yes
+  tasks:
+  - name: install remi repo 
+    ansible.builtin.package:
+      name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+      state: present
+
+  - name: enable Redis 6.2 version
+    ansible.builtin.shell: dnf module enable redis:remi-6.2
+
+  - name: install redis 
+    ansible.builtin.package:
+      name: redis 
+      state: present
+  
+  - name: update listen address from local host to others
+    ansible.builtin.replace:
+      path: /etc/redis.conf
+      regexp: '127.0.0.1'
+      replace: '0.0.0.0'
+  - name: restart mongodb 
+    ansible.builtin.service:
+      name: mongod
+      state: restarted
+      enabled: yes
