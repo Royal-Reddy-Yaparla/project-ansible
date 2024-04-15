@@ -20,10 +20,10 @@
 
   - name: update listen address from local host to others
     ansible.builtin.replace:
-    path: /etc/mongod.conf
-    after: '0.0.0.0'
-    before: '127.0.0.1'
-  
+      path: /etc/mongod.conf
+      after: '0.0.0.0'
+      before: '127.0.0.1'
+    
   - name: restart mongodb 
     ansible.builtin.service:
       name: mongod
