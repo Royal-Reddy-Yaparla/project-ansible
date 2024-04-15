@@ -31,4 +31,5 @@
   - name: unzip the application code
     ansible.builtin.unarchive:
       src: /tmp/web.zip
-      dest: /usr/share/nginx/html
+      dest: /usr/share/nginx/html/
+      remote_src: yes
