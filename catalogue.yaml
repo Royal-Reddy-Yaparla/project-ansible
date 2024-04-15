@@ -44,7 +44,7 @@
   - name: copy Catalogue service file 
     ansible.builtin.copy:
       src: catalogue.service 
-      dest: /etc/systemd/system/
+      dest: /etc/systemd/system/catalogue.service 
   
   - name: reload systemd services
     ansible.builtin.systemd_service:
@@ -58,8 +58,8 @@
 
   - name: copy mongo-repo file 
     ansible.builtin.copy:
-      src: mongo.repo
-      dest: /etc/yum.repos.d/
+      src: mongodb.repo
+      dest: /etc/yum.repos.d/mongodb.repo
 
   - name: install mongodb client 
     ansible.builtin.package:
