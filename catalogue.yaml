@@ -68,7 +68,9 @@
     
   - name: load schema
     ansible.builtin.command: mongo --host mongodb.royalreddy.co.in </app/schema/catalogue.js
-
+    args:
+      chdir: /app
+      
   - name: start and enable catalogue 
     ansible.builtin.service:
       name: catalogue
