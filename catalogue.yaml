@@ -70,6 +70,10 @@
     ansible.builtin.command:  mongo --host mongodb.royalreddy.co.in --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
     register: product_count
 
+  - name: gent products count 
+    ansible.builtin.debug:
+      msg: "product_count:{{product_count}}"
+
   - name: load schema
     ansible.builtin.command: mongo --host mongodb.royalreddy.co.in < /app/schema/catalogue.js
     when: product_count.stdout == "0"
