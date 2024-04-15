@@ -55,3 +55,22 @@
       name: catalogue
       state: started
       enabled: yes
+
+  - name: copy mongo-repo file 
+    ansible.builtin.copy:
+      src: mongo.repo
+      dest: /etc/yum.repos.d/
+
+  - name: install mongodb client 
+    ansible.builtin.package:
+      name: mongodb-org-shell
+      state: present
+    
+  - name: load schema
+    ansible.builtin.command: mongo --host mongodb.royalreddy.co.in </app/schema/catalogue.js
+
+  - name: start and enable catalogue 
+    ansible.builtin.service:
+      name: catalogue
+      state: started
+      enabled: yes
