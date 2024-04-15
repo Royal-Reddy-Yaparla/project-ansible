@@ -66,16 +66,16 @@
       state: present
     
   - name: get the user count
-    ansible.builtin.command:  mongo --host mongodb.royalreddy.co.in --quiet --eval 'db = db.getSiblingDB("user"); db.products.count()'
-    register: product_count
+    ansible.builtin.command:  mongo --host mongodb.royalreddy.co.in --quiet --eval 'db = db.getSiblingDB("user"); db.users.count()'
+    register: user_count
 
-  - name: gent products count 
+  - name: gent user count 
     ansible.builtin.debug:
-      msg: "product_count:{{product_count}}"
+      msg: "user_count:{{user_count}}"
 
   - name: load schema
     ansible.builtin.command: mongo --host mongodb.royalreddy.co.in < /app/schema/user.js
-    when: product_count.stdout == "0"
+    when: user_count.stdout == "0"
 
   - name: start and enable user 
     ansible.builtin.service:
