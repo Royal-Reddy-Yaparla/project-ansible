@@ -22,3 +22,13 @@
     ansible.builtin.file:
       path: /usr/share/nginx/html
       state: directory
+    
+  - name: download application code
+    ansible.builtin.get_url:
+    url: https://roboshop-builds.s3.amazonaws.com/web.zip
+    dest: /tmp/web.zip
+
+  - name: unzip the application code
+    ansible.builtin.unarchive:
+    src: /tmp/web.zip
+    dest: /usr/share/nginx/html
