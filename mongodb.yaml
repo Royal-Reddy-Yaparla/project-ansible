@@ -5,7 +5,7 @@
   - name: setup the mongodb repo file
     ansible.builtin.copy:
       src: mongodb.repo 
-      dest: /etc/yum.repos.d/
+      dest: /etc/yum.repos.d/mongodb.repo 
     
   - name: install mongodb 
     ansible.builtin.package:
@@ -20,7 +20,7 @@
 
   - name: update listen address from local host to others
     ansible.builtin.replace:
-      path: /etc/mongodb.conf
+      path: /etc/mongod.conf
       regexp: '127.0.0.1'
       replace: '0.0.0.0'
     
