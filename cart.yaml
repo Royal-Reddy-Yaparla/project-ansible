@@ -1,5 +1,6 @@
 - name: cart service configuration
   hosts: cart
+  become: yes
   tasks:  
   - name: disable the default nodejs module and enable nodejs:1.18 version
     ansible.builtin.shell: dnf module disable nodejs -y ; dnf module enable nodejs:18 -y

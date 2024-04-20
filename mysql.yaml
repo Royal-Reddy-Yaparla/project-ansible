@@ -1,5 +1,6 @@
 - name: mysql install and configure
   hosts: mysql
+  become: yes
   tasks:  
   - name: disable default the mysql version 
     ansible.builtin.shell: dnf module disable mysql -y
