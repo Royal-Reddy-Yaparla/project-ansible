@@ -12,7 +12,7 @@ PRIVATE_IP=""
 DOMAIN_NAME="royalreddy.co.in"
 HOST_ID="Z07439021R4NQF6C9ULT9"
 
-INSTANCE=("catalogue" "mongodb" "mysql" "redis" "rabbitmq" "web" "user" "payment" "dispatch" "shipping")
+INSTANCE=("catalogue" "mongodb" "mysql" "redis" "rabbitmq" "web" "user" "payment" "shipping")
 #  
 for i in "${INSTANCE[@]}"
 do
