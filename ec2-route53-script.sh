@@ -13,7 +13,9 @@ DOMAIN_NAME="royalreddy.co.in"
 HOST_ID="Z07439021R4NQF6C9ULT9"
 
 
-INSTANCE=("cart" "catalogue" "mongodb" "mysql" "redis" "rabbitmq" "web" "user" "payment" "shipping")
+# INSTANCE=("cart" "catalogue" "mongodb" "mysql" "redis" "rabbitmq" "web" "user" "payment" "shipping")
+INSTANCE=("cart" "catalogue" )
+
 #  
 for i in "${INSTANCE[@]}"
 do
